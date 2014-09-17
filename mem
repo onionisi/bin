@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+mem = %x(free)
+
+if mem =~ /Mem.*?(\d+)\s+.*cache.*?(\d+)\s+/m
+  total, used = $1, $2
+  mem_percent = (used.to_f / total.to_f * 100).to_i
+end
+
+puts "#{mem_percent}%"
